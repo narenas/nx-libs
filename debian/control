@@ -1,4 +1,4 @@
-Source: nx-libs-client-only
+Source: nx-libs
 Section: x11
 Priority: extra
 Maintainer: X2Go Packaging Team <pkg-x2go-devel@lists.alioth.debian.org>

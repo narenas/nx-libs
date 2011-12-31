@@ -1,6 +1,6 @@
-nx-libs-client-only (3.5.0-1) UNRELEASED; urgency=low
+nx-libs (3.5.0-1) UNRELEASED; urgency=low
 
-  * Initial release.
+  * Initial release (closes: #465821).
     - nxcomp (3.5.0-2)
     - nxproxy (3.5.0-1)
   * Use NX adapted LD_LIBRARY_PATH in debian/rules.
