@@ -30,12 +30,15 @@ nx-libs-client-only (3.5.0-1) UNRELEASED; urgency=low
   * X2Go Packaging Team becomes maintainer, Mike Gabriel + Reinhard Tartler
     become uploaders.
   * Make `breaks-without-version' lintian overrides needless.
-  * Set homepage of NoMachine upstream site (using http://www.nomachine.com/sources.php).
+  * Set homepage of NoMachine upstream site
+    (using http://www.nomachine.com/sources.php).
   * Packaging Vcs has been relocated to Alioth.
   * Add more upstream source information to README.source.
   * Make package descriptions in /debian/control more explanatory.
   * Enforce nxcomp package build from main Makefile (via patch).
   * Add patch: 005_nxcomp_gcc43.patch.
   * Add patch: 011_nxcomp_sa-restorer.patch.
+  * Add x11proto-core-dev as build-dependency, remove direct dependency to
+    libx11-6 from libxcomp3.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 28 Dec 2011 19:05:48 +0100

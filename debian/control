@@ -10,6 +10,7 @@ Build-Depends:
  libpng-dev,
  libjpeg-dev,
  zlib1g-dev,
+ x11proto-core-dev,
  quilt (>= 0.46-7~),
  autoconf
 Standards-Version: 3.9.2
@@ -33,7 +34,6 @@ Description: NX proxy (NoMachine)
 Package: libxcomp3
 Architecture: any
 Depends:
- libx11-6,
  ${shlibs:Depends},
  ${misc:Depends}
 Breaks: nxcomp (<=3.5.1)
