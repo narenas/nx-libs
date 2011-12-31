@@ -34,5 +34,6 @@ nx-libs-client-only (3.5.0-1) UNRELEASED; urgency=low
   * Packaging Vcs has been relocated to Alioth.
   * Add more upstream source information to README.source.
   * Make package descriptions in /debian/control more explanatory.
+  * Enforce nxcomp package build from main Makefile (via patch).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 28 Dec 2011 19:05:48 +0100

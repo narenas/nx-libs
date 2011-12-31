@@ -22,7 +22,7 @@ Last-Update: 2011-12-31
 +	cd nxproxy && test -f Makefile && make $@ || true
 +
 +build-arch:
-+	cd nxcomp && autoconf
++	cd nxcomp && autoconf && ./configure && make
 +	cd nxproxy && autoconf && ./configure && make
 +
 +build-indep:
