@@ -40,5 +40,6 @@ nx-libs (3.5.0-1) UNRELEASED; urgency=low
   * Add patch: 011_nxcomp_sa-restorer.patch.
   * Add x11proto-core-dev as build-dependency, remove direct dependency to
     libx11-6 from libxcomp3.
+  * Use source format 3.0 (quilt).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 28 Dec 2011 19:05:48 +0100
