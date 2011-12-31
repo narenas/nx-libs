@@ -1,3 +1,9 @@
+nx-libs (3.5.0-4) UNRELEASED; urgency=low
+
+  * Continue development...
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 31 Dec 2011 19:45:45 +0100
+
 nx-libs (3.5.0-3) unstable; urgency=low
 
   * Remove branding from package descriptions.
@@ -13,7 +19,7 @@ nx-libs (3.5.0-2) unstable; urgency=low
 
 nx-libs (3.5.0-1) unstable; urgency=low
 
-  * Initial release (closes: #465821).
+  * Initial/follow-up release (closes: #610145, #610145, #627803).
     - nxcomp (3.5.0-2)
     - nxproxy (3.5.0-1)
   * Use NX adapted LD_LIBRARY_PATH in debian/rules.
@@ -24,7 +30,7 @@ nx-libs (3.5.0-1) unstable; urgency=low
   * Add autoconf as build dependency.
   * Add patch: 008_add-nxproxy-wrapper.patch. Build nxproxy package.
   * Add patch: 009_nxproxy-add-man-page.patch.
-  * Add nxproxy man page to nxproxy package.
+  * Add nxproxy man page to nxproxy package (closes: #575941).
   * Add lintian overrides for libxcomp*: breaks-without-version.
   * Add patch: 012_nxcomp_makefile-uninstall.patch.
   * Add patch: 015_nxproxy_makefile-uninstall.patch.
