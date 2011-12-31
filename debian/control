@@ -24,8 +24,8 @@ Depends:
  libxcomp3 (>= ${source:Version}), libxcomp3 (<< ${source:Version}.1~),
  ${shlibs:Depends},
  ${misc:Depends}
-Description: NX proxy (NoMachine)
- NX is a software suite from NoMachine which implements very efficient
+Description: NX proxy
+ NX is a software suite which implements very efficient
  compression of the X11 protocol. This increases performance when
  using X applications over a network, especially a slow one.
  .
@@ -39,7 +39,7 @@ Depends:
 Breaks: nxcomp (<=3.5.1)
 Replaces: nxcomp
 Description: NX X compression library
- NX is a software suite from NoMachine which implements very efficient
+ NX is a software suite which implements very efficient
  compression of the X11 protocol. This increases performance when
  using X applications over a network, especially a slow one.
  .
@@ -54,7 +54,7 @@ Depends:
 Breaks: nxcomp-dev (<=3.5.1)
 Replaces: nxcomp-dev
 Description: NX X compression library headers
- NX is a software suite from NoMachine which implements very efficient
+ NX is a software suite which implements very efficient
  compression of the X11 protocol. This increases performance when
  using X applications over a network, especially a slow one.
  .

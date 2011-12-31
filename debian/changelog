@@ -1,3 +1,9 @@
+nx-libs (3.5.0-3) UNRELEASED; urgency=low
+
+  * Remove branding from package descriptions.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 31 Dec 2011 19:26:14 +0100
+
 nx-libs (3.5.0-2) unstable; urgency=low
 
   * Drop useless override stanza in /debian/rules.
