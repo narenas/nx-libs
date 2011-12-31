@@ -16,7 +16,7 @@ Build-Depends:
 Standards-Version: 3.9.2
 Homepage: http://www.nomachine.com/sources.php
 Vcs-Git: git://git.debian.org/git/collab-maint/x2go/nx-libs.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=summary
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=shortlog;h=refs/heads/client-only
 
 Package: nxproxy
 Architecture: any
