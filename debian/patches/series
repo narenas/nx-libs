@@ -1,0 +1,3 @@
+001_add-main-makefile.patch
+012_nxcomp_makefile-uninstall.patch
+015_nxproxy_makefile-uninstall.patch

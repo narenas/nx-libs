@@ -1,0 +1,51 @@
+Description: Provide main Makefile for whole source tree
+ By design this patch is not needed to be sent upstream.
+Forwarded: not-needed
+Author: Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Last-Update: 2011-12-31
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,43 @@
++#!/usr/bin/make -f
++
++all: build
++
++build: build-arch build-indep
++
++clean:
++	cd nx-X11 && test -f Makefile && make $@ || true
++	cd nxcomp && test -f Makefile && make $@ || true
++	cd nxcompext && test -f Makefile && make $@ || true
++	cd nxcompshad && test -f Makefile && make $@ || true
++	cd nxproxy && test -f Makefile && make $@ || true
++
++
++distclean:
++	cd nx-X11 && test -f Makefile && make $@ || true
++	cd nxcomp && test -f Makefile && make $@ || true
++	cd nxcompext && test -f Makefile && make $@ || true
++	cd nxcompshad && test -f Makefile && make $@ || true
++	cd nxproxy && test -f Makefile && make $@ || true
++
++build-arch:
++	cd nxcomp && autoconf
++	cd nxcompext && autoconf
++	cd nxcompshad && autoconf
++	cd nx-X11 && make World
++	cd nxproxy && autoconf && ./configure && make
++
++build-indep:
++
++install:
++	cd nxcomp && make install
++	cd nxcompext && make install
++	cd nxcompshad && make install
++	cd nx-X11 && make install
++	cd nxproxy && make install
++
++uninstall:
++	cd nxcomp && make uninstall
++	cd nxcompext && make uninstall
++	cd nxcompshad && make uninstall
++	cd nx-X11 && make uninstall
++	cd nxproxy && make uninstall

@@ -1,0 +1,63 @@
+Source: nx-libs-client-only
+Section: x11
+Priority: extra
+Maintainer: X2Go Packaging Team <pkg-x2go-devel@lists.alioth.debian.org>
+Uploaders:
+ Reinhard Tartler <siretart@tauware.de>,
+ Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Build-Depends:
+ debhelper (>= 7.0.50~),
+ libpng-dev,
+ libjpeg-dev,
+ zlib1g-dev,
+ quilt (>= 0.46-7~),
+ autoconf
+Standards-Version: 3.9.2
+Homepage: http://www.nomachine.com/sources.php
+Vcs-Git: git://git.debian.org/git/collab-maint/x2go/nx-libs.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=summary
+
+Package: nxproxy
+Architecture: any
+Depends:
+ libxcomp3 (>= ${source:Version}), libxcomp3 (<< ${source:Version}.1~),
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: NX proxy (NoMachine)
+ NX is a software suite from NoMachine which implements very efficient
+ compression of the X11 protocol. This increases performance when
+ using X applications over a network, especially a slow one.
+ .
+ This package provides the NX proxy (client) binary.
+
+Package: libxcomp3
+Architecture: any
+Depends:
+ libx11-6,
+ ${shlibs:Depends},
+ ${misc:Depends}
+Breaks: nxcomp (<=3.5.1)
+Replaces: nxcomp
+Description: NX X compression library
+ NX is a software suite from NoMachine which implements very efficient
+ compression of the X11 protocol. This increases performance when
+ using X applications over a network, especially a slow one.
+ .
+ This package provides the compression library.
+
+Package: libxcomp-dev
+Section: libdevel
+Architecture: any
+Depends:
+ libxcomp3 (= ${binary:Version}),
+ ${misc:Depends}
+Breaks: nxcomp-dev (<=3.5.1)
+Replaces: nxcomp-dev
+Description: NX X compression library headers
+ NX is a software suite from NoMachine which implements very efficient
+ compression of the X11 protocol. This increases performance when
+ using X applications over a network, especially a slow one.
+ .
+ This package provides the compression library (header files).
+
+

@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+        CFLAGS += -O0
+else
+        CFLAGS += -O2
+endif
+
+%:
+	dh $@ --with quilt
+
+override_dh_auto_clean:
+	dh_auto_clean
+
+override_dh_clean:
+	rm -f nxcomp/configure
+	rm -f nxcomp/changelog
+	rm -f nxproxy/changelog
+
+override_dh_auto_build:
+	debian/pre-build-nx.sh
+	dh_auto_build --with quilt
+	debian/post-build-nx.sh
+
+override_dh_auto_install:
+
+override_dh_quilt_patch:
+	dh_quilt_patch
+
+override_dh_quilt_unpatch:
+	dh_quilt_unpatch
+

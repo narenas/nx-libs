@@ -1,0 +1,3 @@
+nxproxy/nxproxy                    usr/lib/nx
+debian/bin/nxproxy                 usr/bin
+

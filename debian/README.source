@@ -1,0 +1,29 @@
+UPSTREAM SOURCES
+----------------
+The current upstream source for this package is NoMachine.
+http://www.nomachine.com/sources.php
+
+
+PACKAGE SOURCE TREE
+-------------------
+This package pulls in 2 source tarballs from NoMachine:
+
+  nxcomp
+  nxproxy
+
+These two package are the minimal requirement for using
+client-side NX applications like kNX, qtnx, x2goclient or
+pyhoca-gui.
+
+
+PATCH SYSTEM
+------------
+This package uses quilt to manage all modifications to the upstream source.
+Changes are stored in the source package as diffs in debian/patches and
+applied during the build.
+
+See /usr/share/doc/quilt/README.source for a detailed explanation.
+
+
+
+X2Go Packaging Team / Mike Gabriel (20111231)

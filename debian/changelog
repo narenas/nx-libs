@@ -1,0 +1,38 @@
+nx-libs-client-only (3.5.0-1) UNRELEASED; urgency=low
+
+  * Initial release.
+    - nxcomp (3.5.0-2)
+    - nxproxy (3.5.0-1)
+  * Use NX adapted LD_LIBRARY_PATH in debian/rules.
+  * Add quilt as build dependency.
+  * Add main Makefile via patch: 001_add-main-makefile.patch.
+  * Fix for lintian issue: missing-build-dependency quilt (>= 0.46-7~).
+  * Remove unknown option --with from dh_auto_clean.
+  * Add autoconf as build dependency.
+  * Add patch: 008_add-nxproxy-wrapper.patch. Build nxproxy package.
+  * Add patch: 009_nxproxy-add-man-page.patch.
+  * Add nxproxy man page to nxproxy package.
+  * Add lintian overrides for libxcomp*: breaks-without-version.
+  * Add patch: 012_nxcomp_makefile-uninstall.patch.
+  * Add patch: 015_nxproxy_makefile-uninstall.patch.
+  * Add install/uninstall stanza to main Makefile (via patch
+    001_add-main-makefile.patch).
+  * Add lintian-overrides for every package. Override lintian warning:
+    possible-new-upstream-release-without-new-version as there will
+    be new upstream releases of NX subprojects that will not require
+    a version increment of the Debian package.
+  * Add individual watch files for NX components in this source package.
+  * Add README.source file, fixes lintian warning:
+    patch-system-but-no-source-readme.
+  * Add upstream CHANGELOG files to all .deb packages of this source package.
+  * Make sure upstream changelog file names are in lower case.
+  * Fix LD_LIBRARY_PATH export in wrapper scripts/patches.
+  * X2Go Packaging Team becomes maintainer, Mike Gabriel + Reinhard Tartler
+    become uploaders.
+  * Make `breaks-without-version' lintian overrides needless.
+  * Set homepage of NoMachine upstream site (using http://www.nomachine.com/sources.php).
+  * Packaging Vcs has been relocated to Alioth.
+  * Add more upstream source information to README.source.
+  * Make package descriptions in /debian/control more explanatory.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 28 Dec 2011 19:05:48 +0100
