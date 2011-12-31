@@ -1,4 +1,4 @@
-nx-libs (3.5.0-1) UNRELEASED; urgency=low
+nx-libs (3.5.0-1) unstable; urgency=low
 
   * Initial release (closes: #465821).
     - nxcomp (3.5.0-2)
@@ -42,4 +42,4 @@ nx-libs (3.5.0-1) UNRELEASED; urgency=low
     libx11-6 from libxcomp3.
   * Use source format 3.0 (quilt).
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 28 Dec 2011 19:05:48 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 31 Dec 2011 18:14:51 +0100
