@@ -1,8 +1,8 @@
-nx-libs (3.5.0-3) UNRELEASED; urgency=low
+nx-libs (3.5.0-3) unstable; urgency=low
 
   * Remove branding from package descriptions.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 31 Dec 2011 19:26:14 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 31 Dec 2011 19:30:28 +0100
 
 nx-libs (3.5.0-2) unstable; urgency=low
 
