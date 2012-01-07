@@ -1,3 +1,10 @@
+nx-libs (3.5.0-5) UNRELEASED; urgency=low
+
+  * Reintroduce removal of build cruft in orig sources via patch
+    system (to fix package building with git-buildpackage).
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 07 Jan 2012 08:26:14 +0100
+
 nx-libs (3.5.0-4) unstable; urgency=low
 
   * Fix Vcs-Browser to put emphasis on the client-only branch
