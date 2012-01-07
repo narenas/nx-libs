@@ -12,7 +12,6 @@ endif
 	dh $@
 
 override_dh_clean:
-	rm -f nxcomp/configure
 	rm -f nxcomp/changelog
 	rm -f nxproxy/changelog
 	dh_clean

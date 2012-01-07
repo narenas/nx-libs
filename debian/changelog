@@ -2,6 +2,7 @@ nx-libs (3.5.0-5) UNRELEASED; urgency=low
 
   * Reintroduce removal of build cruft in orig sources via patch
     system (to fix package building with git-buildpackage).
+  * No removal of files shipped by upstream via dh_clean rule.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 07 Jan 2012 08:26:14 +0100
 
