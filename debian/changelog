@@ -6,6 +6,9 @@ nx-libs (3.5.0-5) UNRELEASED; urgency=low
   * Exclude autoconf build dirs from dh_clean, as they are shipped with upstream
     source tarball (nxproxy).
   * Add patch: 000_add-NX-redistribution-README.patch.
+  * Add patches: 009_add-nxproxy-man-page.patch. Reintroduce man page creation
+    via patch system, so that all man pages find their way into the
+    NX-redistribution tarball created from this source project.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sat, 07 Jan 2012 08:26:14 +0100
 

@@ -2,6 +2,7 @@
 000_remove-build-cruft-from-origsources.patch
 001_add-main-makefile.patch
 005_nxcomp_gcc43.patch
+009_nxproxy-add-man-page.patch
 011_nxcomp_sa-restorer.patch
 012_nxcomp_makefile-uninstall.patch
 015_nxproxy_makefile-uninstall.patch
