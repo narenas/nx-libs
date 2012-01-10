@@ -62,6 +62,8 @@ git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir doc/ && cp -a debian/patches doc/applied-patches)
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && QUILT_PATCHES=doc/applied-patches quilt push -a)
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f README* doc/)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f debian/changelog doc/changelog)
+
 
 # remove folders that we do not want to roll into the tarball
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf ".git"* )
