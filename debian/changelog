@@ -1,4 +1,4 @@
-nx-libs (3.5.0.2-0) UNRELEASED; urgency=low
+nx-libs (3.5.0.2-0) unstable; urgency=low
 
   * Make nxproxy wrapper available via patch, not in /debian/bin folder.
   * Build with source format 3.0 (native) for the NX-redistributed project.
@@ -7,7 +7,7 @@ nx-libs (3.5.0.2-0) UNRELEASED; urgency=low
   * Update folder name where applied patches end up in the tarball
     release.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 10 Jan 2012 15:07:39 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 10 Jan 2012 15:26:36 +0100
 
 nx-libs (3.5.0.1-0) unstable; urgency=low
 
