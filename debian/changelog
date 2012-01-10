@@ -1,3 +1,9 @@
+nx-libs (3.5.0.2-2) UNRELEASED; urgency=low
+
+  * Make nxproxy wrapper available via patch, not in /debian/bin folder.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 10 Jan 2012 15:07:39 +0100
+
 nx-libs (3.5.0.1-0) unstable; urgency=low
 
   * Fix README.NX-redistributed. Adapt to client-only branch.

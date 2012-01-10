@@ -6,3 +6,5 @@
 011_nxcomp_sa-restorer.patch
 012_nxcomp_makefile-uninstall.patch
 015_nxproxy_makefile-uninstall.patch
+022_add-nxproxy-wrapper.patch
+
