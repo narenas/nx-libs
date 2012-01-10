@@ -1,4 +1,4 @@
-nx-libs (3.5.0-5) UNRELEASED; urgency=low
+nx-libs (3.5.0.0-0) UNRELEASED; urgency=low
 
   * Reintroduce removal of build cruft in orig sources via patch
     system (to fix package building with git-buildpackage).
