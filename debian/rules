@@ -9,16 +9,16 @@ else
 endif
 
 %:
-	dh $@
+	dh $@ --with quilt
 
 override_dh_clean:
 	rm -f nxcomp/changelog
 	rm -f nxproxy/changelog
-	dh_clean
+	dh_clean --with quilt
 
 override_dh_auto_build:
 	debian/pre-build-nx.sh
-	dh_auto_build
+	dh_auto_build --with quilt
 	debian/post-build-nx.sh
 
 override_dh_auto_install:
