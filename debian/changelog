@@ -3,6 +3,7 @@ nx-libs (3.5.0.2-2) UNRELEASED; urgency=low
   * Make nxproxy wrapper available via patch, not in /debian/bin folder.
   * Build with source format 3.0 (native) for the NX-redistributed project.
   * Fix nxproxy wrapper installation (dh_install).
+  * Remove -X autom4te.cache from override_dh_clean in /debian/rules.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 10 Jan 2012 15:07:39 +0100
 
