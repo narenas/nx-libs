@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# Copyright (C) 2011 by Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+#
+# This is free software; you can redistribute it and/or modify
+# it under the tBerms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the
+# Free Software Foundation, Inc.,
+# 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
+# Thanks to Jonas Smedegaard <dr@jones.dk> for inspiration...
+
+set -e
+
+usage() {
+	echo "usage: $(basename "$0") <release-version> {server|client}"
+	exit 1
+}
+
+PROJECT="$(basename $PWD)"
+
+RELEASE="$1"
+test -n "$RELEASE" || usage
+CHECKOUT="$2"
+test -n "$CHECKOUT" || usage
+
+if [ "x$CHECKOUT" = "xmaster" ] || [ "x$CHECKOUT" = "xserver" ] || [ "x$CHECKOUT" = "xfull" ]; then
+	CHECKOUT="redist-server/$RELEASE"
+	RELEASE_SUFFIX='-full'
+elif [ "x$CHECKOUT" = "xclient-only" ] || [ "x$CHECKOUT" = "xclient" ] || [ "x$CHECKOUT" = "xlite" ]; then
+	CHECKOUT="redist-client/$RELEASE"
+	RELEASE_SUFFIX='-lite'
+else
+	usage
+fi 
+
+TARGETDIR=".."
+
+MANIFEST="$(mktemp)"
+TEMP_DIR="$(mktemp -d)"
+
+echo $MANIFEST
+
+trap "rm -f \"${MANIFEST}\"; rm -rf \"${TEMP_DIR}\"" 0
+
+# create local copy of Git project at temp location
+git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
+
+# check out the refspec needed...
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && git fetch origin client-only:client-only && git checkout --force ${CHECKOUT} 2>/dev/null || true )
+
+# apply all patches shipped in debian/patches and create a copy of them that we ship with the tarball
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir doc/ && cp -a debian/patches doc/applied-patches)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && QUILT_PATCHES=doc/applied-patches quilt push -a)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f README* doc/)
+
+# remove folders that we do not want to roll into the tarball
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf ".git"* )
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf ".pc"* )
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "debian"* )
+
+# remove files, that we do not want in the tarballs (build cruft)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf nxcomp*/configure nxproxy/autom4te.cache* )
+
+# create target location for tarball
+mkdir -p "$TARGETDIR/_releases_/source/${PROJECT}/"
+
+# roll the ball...
+( set -e; cd "$TEMP_DIR" && find "${PROJECT}_$RELEASE" -type f | sed 's/^\.*\/*//' | sort > "$MANIFEST" )
+tar c -C "$TEMP_DIR" --owner 0 --group 0 --numeric-owner --no-recursion --files-from "$MANIFEST" | gzip -n > "$TARGETDIR/_releases_/source/${PROJECT}/${PROJECT}_${RELEASE}${RELEASE_SUFFIX}.tar.gz"
