@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 # Copyright (C) 2011 by Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
 #
 # This is free software; you can redistribute it and/or modify
@@ -59,7 +61,8 @@ git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && git fetch origin client-only:client-only && git checkout --force ${CHECKOUT} 2>/dev/null || true )
 
 # apply all patches shipped in debian/patches and create a copy of them that we ship with the tarball
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir doc/ && cp -a debian/patches doc/applied-patches)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir doc/ && find debian/patches | egrep -v "(series|debian/patches/[0-9]+a_debian_.*\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
+( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep -v "[0-9]+a_debian_.*\.patch" doc/applied-patches/series)
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && QUILT_PATCHES=doc/applied-patches quilt push -a)
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f README* doc/)
 ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f debian/changelog doc/changelog)
