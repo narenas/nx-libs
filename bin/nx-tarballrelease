@@ -24,7 +24,7 @@ set -x
 set -e
 
 usage() {
-	echo "usage: $(basename "$0") <release-version> {server|client}"
+	echo "usage: $(basename "$0") {<release-version>,HEAD} {server|client}"
 	exit 1
 }
 
@@ -35,11 +35,11 @@ test -n "$RELEASE" || usage
 CHECKOUT="$2"
 test -n "$CHECKOUT" || usage
 
-if [ "x$CHECKOUT" = "xmaster" ] || [ "x$CHECKOUT" = "xserver" ] || [ "x$CHECKOUT" = "xfull" ]; then
+if [ "x$CHECKOUT" = "xserver" ] || [ "x$CHECKOUT" = "xfull" ]; then
 	MODE="full"
 	CHECKOUT="redist-server/$RELEASE"
 	RELEASE_SUFFIX='-full'
-elif [ "x$CHECKOUT" = "xclient-only" ] || [ "x$CHECKOUT" = "xclient" ] || [ "x$CHECKOUT" = "xlite" ]; then
+elif [ "x$CHECKOUT" = "xclient" ] || [ "x$CHECKOUT" = "xlite" ]; then
 	MODE="lite"
 	CHECKOUT="redist-client/$RELEASE"
 	RELEASE_SUFFIX='-lite'
@@ -58,17 +58,20 @@ trap "rm -f \"${MANIFEST}\"; rm -rf \"${TEMP_DIR}\"" 0
 
 # create local copy of Git project at temp location
 git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
+if [ "x$RELEASE" != "xHEAD" ]; then
+	git checkout $CHECKOUT
+fi
 
 # prepare patches for lite and full tarball
 if [ "x$MODE" = "xfull" ]; then
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(debian/patches/[0-9]+_.*\.(full|full\+lite)\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.(full|full\+lite)\.patch" > doc/applied-patches/series)
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(debian/patches/[0-9]+_.*\.(full|full\+lite)\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.(full|full\+lite)\.patch" > doc/applied-patches/series)
 else
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompshad"* )
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompext"* )
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nx-X11"* )
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(series|debian/patches/[0-9]+_.*\.full\+lite\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
-    ( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.full\+lite\.patch" > doc/applied-patches/series)
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompshad"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompext"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nx-X11"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(series|debian/patches/[0-9]+_.*\.full\+lite\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.full\+lite\.patch" > doc/applied-patches/series)
 fi
 
 # apply all patches shipped in debian/patches and create a copy of them that we ship with the tarball
