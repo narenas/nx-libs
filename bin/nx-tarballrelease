@@ -59,7 +59,7 @@ trap "rm -f \"${MANIFEST}\"; rm -rf \"${TEMP_DIR}\"" 0
 # create local copy of Git project at temp location
 git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
 if [ "x$RELEASE" != "xHEAD" ]; then
-	git checkout $CHECKOUT
+	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && git checkout $CHECKOUT; )
 fi
 
 # prepare patches for lite and full tarball
