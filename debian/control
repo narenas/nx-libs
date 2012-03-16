@@ -6,7 +6,7 @@ Uploaders:
  Reinhard Tartler <siretart@tauware.de>,
  Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
 Build-Depends:
- debhelper (>= 7.0.50~),
+ debhelper,
  libpng-dev,
  libjpeg-dev,
  zlib1g-dev,
