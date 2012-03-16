@@ -2,6 +2,7 @@ nx-libs (2:3.5.0.12-0~bpo0+lenny1) UNRELEASED; urgency=low
 
   * Replace /debian/rules with a version that does not use dh overrides.
   * Do not depend on debhelper (>= 7.0.50~).
+  * Depend on quilt (0.46-6) as in Debian lenny.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 16 Mar 2012 19:03:57 +0100
 

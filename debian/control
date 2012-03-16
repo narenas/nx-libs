@@ -10,7 +10,7 @@ Build-Depends:
  libpng-dev,
  libjpeg-dev,
  zlib1g-dev,
- quilt (>= 0.46-7~),
+ quilt (>= 0.46-6~),
  libxmltok1-dev,
  autoconf
 Build-Conflicts:
