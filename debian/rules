@@ -25,7 +25,12 @@ clean:
 	rm -f nxproxy/changelog
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_clean
 
-build:
+build: build-indep build-arch
+
+build-indep:
+# nothing to do here...
+
+build-arch:
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_testdir
 	QUILT_PATCHES=debian/patches quilt push -a
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_auto_configure
@@ -34,7 +39,12 @@ build:
 	debian/post-build-nx.sh
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_auto_test
 
-binary:
+binary: binary-indep binary-arch
+
+binary-indep:
+# nothing to do here...
+
+binary-arch:
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_testroot
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_prep
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_installdirs
