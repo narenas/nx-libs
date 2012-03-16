@@ -30,7 +30,7 @@ build:
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_quilt_patch
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_auto_configure
 	debian/pre-build-nx.sh
-	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_auto_build --with quilt --parallel
+	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_auto_build
 	debian/post-build-nx.sh
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_auto_test
 
