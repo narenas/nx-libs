@@ -92,4 +92,4 @@ mkdir -p "$TARGETDIR/_releases_/source/${PROJECT}/"
 
 # roll the ball...
 ( set -e; cd "$TEMP_DIR" && find "${PROJECT}_$RELEASE" -type f | sed 's/^\.*\/*//' | sort > "$MANIFEST" )
-tar c -C "$TEMP_DIR" --owner 0 --group 0 --numeric-owner --no-recursion --files-from "$MANIFEST" | gzip -n > "$TARGETDIR/_releases_/source/${PROJECT}/${PROJECT}_${RELEASE}${RELEASE_SUFFIX}.tar.gz"
+tar c -C "$TEMP_DIR" --owner 0 --group 0 --numeric-owner --no-recursion --files-from "$MANIFEST" | gzip -n > "$TARGETDIR/_releases_/source/${PROJECT}/${PROJECT}-${RELEASE}${RELEASE_SUFFIX}.tar.gz"
