@@ -57,39 +57,39 @@ echo $MANIFEST
 trap "rm -f \"${MANIFEST}\"; rm -rf \"${TEMP_DIR}\"" 0
 
 # create local copy of Git project at temp location
-git clone . "$TEMP_DIR/${PROJECT}_$RELEASE"
+git clone . "$TEMP_DIR/${PROJECT}-$RELEASE"
 if [ "x$RELEASE" != "xHEAD" ]; then
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && git checkout $CHECKOUT; )
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && git checkout $CHECKOUT; )
 fi
 
 # prepare patches for lite and full tarball
 if [ "x$MODE" = "xfull" ]; then
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(debian/patches/[0-9]+_.*\.(full|full\+lite)\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.(full|full\+lite)\.patch" > doc/applied-patches/series)
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(debian/patches/[0-9]+_.*\.(full|full\+lite)\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.(full|full\+lite)\.patch" > doc/applied-patches/series)
 else
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompshad"* )
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nxcompext"* )
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "nx-X11"* )
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(series|debian/patches/[0-9]+_.*\.full\+lite\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
-	( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.full\+lite\.patch" > doc/applied-patches/series)
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf "nxcompshad"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf "nxcompext"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf "nx-X11"* )
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && mkdir -p doc/applied-patches && find debian/patches | egrep "(series|debian/patches/[0-9]+_.*\.full\+lite\.patch)" | while read file; do cp -a $file doc/applied-patches; done)
+	( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && cat debian/patches/series | egrep "[0-9]+_.*\.full\+lite\.patch" > doc/applied-patches/series)
 fi
 
 # apply all patches shipped in debian/patches and create a copy of them that we ship with the tarball
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && QUILT_PATCHES=doc/applied-patches quilt push -a)
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f README* doc/)
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && mv -f debian/changelog doc/changelog)
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && QUILT_PATCHES=doc/applied-patches quilt push -a)
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && mv -f README* doc/)
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && mv -f debian/changelog doc/changelog)
 
 # remove folders that we do not want to roll into the tarball
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf ".git"* )
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf ".pc"* )
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf "debian"* )
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf ".git"* )
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf ".pc"* )
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf "debian"* )
 
 # remove files, that we do not want in the tarballs (build cruft)
-( set -e; cd "$TEMP_DIR/${PROJECT}_$RELEASE/" && rm -Rf nxcomp*/configure nxproxy/autom4te.cache* )
+( set -e; cd "$TEMP_DIR/${PROJECT}-$RELEASE/" && rm -Rf nxcomp*/configure nxproxy/autom4te.cache* )
 
 # create target location for tarball
 mkdir -p "$TARGETDIR/_releases_/source/${PROJECT}/"
 
 # roll the ball...
-( set -e; cd "$TEMP_DIR" && find "${PROJECT}_$RELEASE" -type f | sed 's/^\.*\/*//' | sort > "$MANIFEST" )
+( set -e; cd "$TEMP_DIR" && find "${PROJECT}-$RELEASE" -type f | sed 's/^\.*\/*//' | sort > "$MANIFEST" )
 tar c -C "$TEMP_DIR" --owner 0 --group 0 --numeric-owner --no-recursion --files-from "$MANIFEST" | gzip -n > "$TARGETDIR/_releases_/source/${PROJECT}/${PROJECT}-${RELEASE}${RELEASE_SUFFIX}.tar.gz"
