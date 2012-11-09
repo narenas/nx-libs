@@ -1,10 +1,11 @@
 Source: nx-libs
 Section: x11
-Priority: extra
-Maintainer: X2Go Packaging Team <pkg-x2go-devel@lists.alioth.debian.org>
+Priority: optional
+Maintainer: X2Go Developers <x2go-dev@lists.berlios.de>
 Uploaders:
  Reinhard Tartler <siretart@tauware.de>,
- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+ Mike Gabriel <mike.gabriel@das-netzwerkteam.de>,
+ Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>,
 Build-Depends:
  debhelper,
  libpng-dev,
@@ -20,10 +21,10 @@ Build-Conflicts:
  x11proto-record-dev,
  x11proto-xinerama-dev,
  xbitmaps
-Standards-Version: 3.9.2
-Homepage: http://www.nomachine.com/sources.php
-Vcs-Git: git://git.debian.org/git/collab-maint/x2go/nx-libs.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=summary
+Standards-Version: 3.9.3
+Homepage: http://code.x2go.org/gitweb?p=nx-libs.git;a=summary
+Vcs-Git: git://code.x2go.org/nx-libs.git
+Vcs-Browser: http://code.x2go.org/gitweb?p=nx-libs.git;a=summary
 
 Package: libnx-x11
 Architecture: any
@@ -190,7 +191,6 @@ Description: NX X11 protocol compression extensions library
 
 Package: libxcompext-dev
 Architecture: any
-Priority: extra
 Section: libdevel
 Depends:
  libxcompext3 (=${binary:Version}),

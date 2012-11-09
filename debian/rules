@@ -9,13 +9,10 @@ else
 endif
 
 clean:
-	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_testdir
+	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_testdir
 	rm -Rf nx-X11/.build-exports
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH QUILT_PATCHES=debian/patches quilt pop -a || true
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_auto_clean
-	rm -f nxcomp/configure
-	rm -f nxcompext/configure
-	rm -f nxcompshad/configure
 	rm -f nx-X11/changelog
 	rm -f nxcomp/changelog
 	rm -f nxcompext/changelog
@@ -23,7 +20,7 @@ clean:
 	rm -f nx-X11/programs/Xserver/hw/nxagent/changelog
 	rm -f nx-X11/programs/nxauth/changelog
 	rm -f nxproxy/changelog
-	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATHdh_clean
+	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_clean
 
 build: build-indep build-arch
 
@@ -86,4 +83,5 @@ binary-arch:
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_gencontrol
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_md5sums
 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH dh_builddeb
+
 
